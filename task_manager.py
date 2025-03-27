@@ -18,6 +18,7 @@ def AddTask():
         addedTask = str(input("\nEnter in a task: "))
         duplicate = False
         for task in tasks:
+            # Removes the checkmark from the completeTask method
             task = task[:-2]
             if (task.lower() == addedTask.lower()):
                 duplicate = True
@@ -26,11 +27,13 @@ def AddTask():
             print("Task already exists" + "\n")
         elif(len(addedTask) == 0 or len(addedTask.strip()) == 0):
             print("Nothing was entered try again")
+            #If task can be added, capitalise the fisrt character for layout purposes
         else:
             capitalizeFirst = addedTask[0].capitalize() + addedTask[1:]
             tasks.append(capitalizeFirst)
             listTasks()
             added = True
+            #If you wish to add as many tasks as you like
         while(added):
             cond = input("Add another task? Y = Yes, N = No: ")
             if cond == "Y" or cond =="y":
@@ -48,7 +51,7 @@ def removeTask():
     print("\n")
     try:
         taskNumber = int(input("Enter the number associated with the task you want to remove: "))
-        if taskNumber < 0:
+        if taskNumber <= 0:
             print(f"{taskNumber} is negative and not a task.")
         else:
             print("Checking......")
@@ -69,6 +72,7 @@ def completeTask():
     listTasks()
     completedTask = int(input("\n" "Which task do you wish to complete?: "))
     try:
+        #Checking if theres a checkmark at the last index of the string
         if (tasks[completedTask - 1][-1] == "✅"):
             print(f"\nTask: '{tasks [completedTask - 1][:-2]}' has already been marked as completed")
         else:
@@ -78,7 +82,7 @@ def completeTask():
             tasks.insert(completedTask - 1, toUpdate)
             listTasks()
     except IndexError:
-        print(f"\nNo task labelled {completedTask}")
+        print(f"\nNo task labelled at number {completedTask}")
 
         
 
